@@ -1,0 +1,92 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; -->
+    <!-- any other head content must come *after* these tags -->
+    <title>String Transform</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	 
+  <style>
+	.wrapper {
+    margin: auto;
+    width: 75%;
+    float: none;  /*use float:none for some bootstrap element to displayed correctly*/
+    padding: 25px 5px;
+   
+}
+  </style>
+  
+  </head>
+  <body>
+
+
+	<div class="wrapper">
+		<form class="form-horizontal" >
+		
+		
+
+
+		<!-- Textarea -->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="Output">Input</label>
+		  <div class="col-md-10">                     
+			<textarea class="form-control" id="input" name="input" rows="10" >John Smith</textarea>
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="regex">Regex</label>  
+		  <div class="col-md-10">
+		  <textarea class="form-control" id="regex" name="regex" placeholder="" class="form-control input-md" >(\w+) (\w+)</textarea>
+			
+		  </div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="replace">Replace with</label>  
+		  <div class="col-md-10">
+		  <textarea  class="form-control" id="replace" name="replace" placeholder="" class="form-control input-md">$2, $1</textarea>
+			
+		  </div>
+		</div>
+		
+		<!-- Button -->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="runReplace"></label>
+		  <div class="col-md-10">
+			<button type="button" id="runReplace" name="runReplace" class="btn btn-primary">replace</button>
+			<button type="button" id="copy_button" name="copytoclipboard" class="btn btn-primary" data-clipboard-target="#output">Copy to Clipboard</button>
+			<button type="button" id="clean" name="clean" class="btn btn-primary">Clean</button>
+		  </div>
+		</div>
+
+
+		<!-- Textarea -->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="output">Output</label>
+		  <div class="col-md-10">                     
+			<textarea class="form-control" id="output" name="output" rows="10" readonly="true" ></textarea>
+		  </div>
+		</div>
+
+		</form>
+
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	
+	<script src="js/transform.js"></script>
+  </body>
+</html>
+	
+	
