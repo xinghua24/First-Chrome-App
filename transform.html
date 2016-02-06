@@ -12,12 +12,16 @@
 	 
   <style>
 	.wrapper {
-    margin: auto;
-    width: 75%;
-    float: none;  /*use float:none for some bootstrap element to displayed correctly*/
-    padding: 25px 5px;
-   
-}
+		margin: auto;
+		width: 75%;
+		float: none;  /*use float:none for some bootstrap element to displayed correctly*/
+		padding: 25px 5px;
+	}
+	
+	/*allow scrollable*/
+	html, body {
+		overflow-y: visible;
+	}
   </style>
   
   </head>
@@ -60,9 +64,10 @@
 		<div class="form-group">
 		  <label class="col-md-2 control-label" for="runReplace"></label>
 		  <div class="col-md-10">
-			<button type="button" id="runReplace" name="runReplace" class="btn btn-primary">replace</button>
+			<button type="button" id="runReplace" name="runReplace" class="btn btn-primary">Run Replace</button>
 			<button type="button" id="copy_button" name="copytoclipboard" class="btn btn-primary" data-clipboard-target="#output">Copy to Clipboard</button>
 			<button type="button" id="clean" name="clean" class="btn btn-primary">Clean</button>
+			<button type="button" id="save" name="save" class="btn btn-primary">Save Replace</button>
 		  </div>
 		</div>
 
@@ -75,8 +80,22 @@
 		  </div>
 		</div>
 
+		
+		<!-- Button -->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="runReplace"></label>
+		  <div class="col-md-10">
+			<button type="button" id="show_saved_replaces" name="show_saved_replaces" class="btn btn-primary">Show Saved Replaces</button>
+			<button type="button" id="remove_saved_replaces" name="remove_saved_replaces" class="btn btn-primary">Remove Saved Replaces</button>
+		  </div>
+		</div>
+		
 		</form>
 
+		<div id="saved_replaces" class="col-md-10 col-md-offset-2" >
+			
+		</div>
+		
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

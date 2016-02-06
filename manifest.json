@@ -8,5 +8,10 @@
       "scripts": ["background.js"]
     }
   },
-  "icons": { "16": "transform-16.png", "128": "transform-128.png" }
+  "icons": { "16": "transform-16.png", "128": "transform-128.png" },
+          
+		  
+	"permissions": [
+          "storage"
+    ]
 }
