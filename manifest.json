@@ -1,7 +1,7 @@
 {
-  "name": "String Replacer",
-  "description": "String manipulation using replace() function in javascript",
-  "version": "0.1",
+  "name": "String Regex Replacer",
+  "description": "String manipulation using replace() function in javascript.",
+  "version": "0.0.0.1",
   "manifest_version": 2,
   "app": {
     "background": {

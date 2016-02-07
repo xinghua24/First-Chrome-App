@@ -6,10 +6,20 @@ $(document).ready(function(){
 		new Clipboard('#copy_button');
 	})();
 	
+	function getFlags() {
+		var flags = '';
+		flags += $('#gFlag').is(':checked')? 'g': '';
+		flags += $('#iFlag').is(':checked')? 'i': '';
+		flags += $('#mFlag').is(':checked')? 'm': '';
+		flags += $('#uFlag').is(':checked')? 'u': '';
+		flags += $('#yFlag').is(':checked')? 'y': '';
+		return flags;
+	}
 	
 	/************************* handle replace button click******************************/
 	$('#runReplace').click(function(){
-		var re = new RegExp( $('#pattern').val(), 'g');
+		
+		var re = new RegExp( $('#pattern').val(), getFlags());
 		var result = $('#input').val().replace( re, $('#replace').val() );
 		$('#output').val(result);
 	});
@@ -32,18 +42,17 @@ $(document).ready(function(){
 				return;
 			}
 	
-			console.log( result ); 
 			if( !result.hasOwnProperty( "storedData" )){
 				result["storedData"] = []; // initialize storedData
 			}
 			result["storedData"].push( {
 				"input": $('#input').val(),
 				"pattern": $('#pattern').val(),
-				"replace": $('#replace').val()
-			
+				"replace": $('#replace').val(),
+				"flags" : getFlags()
 			} );
 			chrome.storage.local.set(result, function(){
-				console.log( "data saved successfully");
+				//console.log( "data saved successfully");
 			} );
 			
 			// reflesh saved replaces
@@ -72,12 +81,12 @@ $(document).ready(function(){
 		var data = {};
 		data['storedData'] = [];
 		chrome.storage.local.set(data, function( result ){
-			console.log( "saved replaces removed succesfully");
+			//console.log( "saved replaces removed succesfully");
 		});
 	});
 	
 	//************************* bind load and remove event **************************/
-	function bindEventToButton( divElem, loadButton, removeButton, index, input, pattern, replace){
+	function bindEventToButton( divElem, loadButton, removeButton, index, input, pattern, replace, flags){
 		$(divElem).click(function(event){
 					$(".bind-button").hide();
 					$(loadButton).show();
@@ -89,6 +98,11 @@ $(document).ready(function(){
 			$('#input').val( input );
 			$('#pattern').val( pattern );
 			$('#replace' ).val( replace );
+			$('#gFlag').prop('checked', flags.indexOf('g')> -1);
+			$('#iFlag').prop('checked', flags.indexOf('i')> -1);
+			$('#mFlag').prop('checked', flags.indexOf('m')> -1);
+			$('#uFlag').prop('checked', flags.indexOf('u')> -1);
+			$('#yFlag').prop('checked', flags.indexOf('y')> -1);
 		});
 		
 		$(removeButton).click(function(event){
@@ -101,7 +115,7 @@ $(document).ready(function(){
 				result['storedData'][index] = null;
 					
 				chrome.storage.local.set(result, function(){
-					console.log( "data saved successfully");
+					//console.log( "data saved successfully");
 				} );
 			
 				$(divElem).hide();
@@ -133,7 +147,7 @@ $(document).ready(function(){
 				console.log("Runtime error.");
 				return;
 			}
-			console.log( result ); 
+
 			if( !result.hasOwnProperty( "storedData" )){
 				return;
 			}
@@ -145,7 +159,10 @@ $(document).ready(function(){
 				
 				if( !item ) continue;
 				
-				var displayText = "Input: " + formatDisplayText(item.input) + "<br/>Pattern : " + formatDisplayText(item.pattern) + "<br/>Replace With: " + formatDisplayText(item.replace) ;
+				var displayText = "Input: " + formatDisplayText(item.input) 
+				+ "<br/>Pattern : " + formatDisplayText(item.pattern) 
+				+ "<br/>Flags: " + item.flags
+				+ "<br/>Replace With: " + formatDisplayText(item.replace);
 
 				displayText = "<p class='pull-left'>" + displayText + "</p>";
 				
@@ -179,7 +196,7 @@ $(document).ready(function(){
 				
 				// need to create a function to avoid closure in a for loop
 				// see http://stackoverflow.com/questions/750486/javascript-closure-inside-loops-simple-practical-example
-				bindEventToButton( divElem, loadButton, removeButton, i, item.input, item.pattern,  item.replace  );
+				bindEventToButton( divElem, loadButton, removeButton, i, item.input, item.pattern,  item.replace, item.flags  );
 			}
 			
 			$('#saved_replaces').append(divElems);

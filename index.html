@@ -41,6 +41,30 @@
   
   </head>
   <body>
+  
+    <!-- Modal for users to confirm if they want to remove all replaces -->
+  <div class="modal fade" id="remove_saved_replaces_model" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Confirm</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to remove all replaces?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		  <button type="button" id="remove_saved_replaces" name="remove_saved_replaces" class="btn btn-primary" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
 
 
 	<div class="wrapper">
@@ -62,6 +86,35 @@
 			
 		  </div>
 		</div>
+		
+				
+		<!-- Multiple Checkboxes (inline) -->
+		<!-- Please note that "u" and "y" flag is currently NOT supported by Chrome yet -->
+		<div class="form-group">
+		  <label class="col-md-2 control-label" for="Flags">Flags</label>
+		  <div class="col-md-10">
+			<label class="checkbox-inline" for="Flag">
+			  <input type="checkbox" name="gFlag" id="gFlag" checked value="g">
+			  g - global
+			</label>
+			<label class="checkbox-inline" for="iFlag">
+			  <input type="checkbox" name="iFlag" id="iFlag" value="i">
+			  i - ignore case
+			</label>
+			<label class="checkbox-inline" for="mFlags">
+			  <input type="checkbox" name="mFlag" id="mFlag" value="m">
+			  m - multiline
+			</label>
+			<label class="checkbox-inline" for="uFlag" style="display:none">
+			  <input type="checkbox" name="uFlag" id="uFlag" value="u">
+			  u - unicode
+			</label>
+			<label class="checkbox-inline" for="yFlag" style="display:none">
+			  <input type="checkbox" name="yFlag" id="yFlag" value="y">
+			  y - sticky
+			</label>
+		  </div>
+		</div>
 
 		<!-- Text input-->
 		<div class="form-group">
@@ -71,6 +124,7 @@
 			
 		  </div>
 		</div>
+
 		
 		<!-- Button -->
 		<div class="form-group">
@@ -98,7 +152,7 @@
 		  <label class="col-md-2 control-label" for="runReplace"></label>
 		  <div class="col-md-10">
 			<button type="button" id="show_saved_replaces" name="show_saved_replaces" class="btn btn-primary">Show Saved Replaces</button>
-			<button type="button" id="remove_saved_replaces" name="remove_saved_replaces" class="btn btn-primary">Remove Saved Replaces</button>
+			<button type="button" id="model_opener_button" name="model_opener_button" class="btn btn-primary"  data-toggle="modal" data-target="#remove_saved_replaces_model">Remove Saved Replaces</button>
 		  </div>
 		</div>
 		
