@@ -46,7 +46,10 @@ $(document).ready(function(){
 				console.log( "data saved successfully");
 			} );
 			
+			// reflesh saved replaces
+			showSavedReplaces();
 		});
+
 
 	});
 	
@@ -60,7 +63,7 @@ $(document).ready(function(){
 		return displayText;
 	}
 	
-	/************************* remove saved replaces button ******************************/
+	/************************* remove all saved replaces button ******************************/
 	$('#remove_saved_replaces').click(function(){
 		
 		//remove all child element
@@ -87,10 +90,41 @@ $(document).ready(function(){
 			$('#pattern').val( pattern );
 			$('#replace' ).val( replace );
 		});
+		
+		$(removeButton).click(function(event){
+			chrome.storage.local.get('storedData', function( result ){
+				if (chrome.runtime.lastError) {
+					console.log("Runtime error.");
+					return;
+				}
+				
+				result['storedData'][index] = null;
+					
+				chrome.storage.local.set(result, function(){
+					console.log( "data saved successfully");
+				} );
+			
+				$(divElem).hide();
+			});
+		});
 	}
 	
 	/*************************show saved replaces ******************************/
 	$('#show_saved_replaces').click(function(){
+		
+		if( $('#saved_replaces').is(':visible')){
+			$('#saved_replaces').hide();
+			$('#show_saved_replaces').text('Show Saved Replaces');
+			return;
+		}
+		showSavedReplaces();
+		
+		$('#saved_replaces').show();
+		$('#show_saved_replaces').text('Hide Saved Replaces');
+	});
+	
+	
+	function showSavedReplaces(){
 		//remove all child element
 		$('#saved_replaces').empty();
 		
@@ -150,7 +184,6 @@ $(document).ready(function(){
 			
 			$('#saved_replaces').append(divElems);
 		});
-	});
-	
+	}
 
 });
