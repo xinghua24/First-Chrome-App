@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; -->
     <!-- any other head content must come *after* these tags -->
-    <title>String Transform</title>
+    <title>String Replacer</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -22,6 +22,21 @@
 	html, body {
 		overflow-y: visible;
 	}
+	
+	.saved_replace {
+		padding : 8px;
+		margin: 2px;
+		border-radius: 3px;
+		background-color : #A7E7FF;
+	}
+	
+	.saved_replace:hover {
+		background: #AACCFF;
+	}
+	
+	#saved_replaces {
+		padding : 0px;
+	}
   </style>
   
   </head>
@@ -30,9 +45,6 @@
 
 	<div class="wrapper">
 		<form class="form-horizontal" >
-		
-		
-
 
 		<!-- Textarea -->
 		<div class="form-group">
@@ -44,9 +56,9 @@
 
 		<!-- Text input-->
 		<div class="form-group">
-		  <label class="col-md-2 control-label" for="regex">Regex</label>  
+		  <label class="col-md-2 control-label" for="pattern">Pattern</label>  
 		  <div class="col-md-10">
-		  <textarea class="form-control" id="regex" name="regex" placeholder="" class="form-control input-md" >(\w+) (\w+)</textarea>
+		  <textarea class="form-control" id="pattern" name="pattern" placeholder="" class="form-control input-md" >(\w+) (\w+)</textarea>
 			
 		  </div>
 		</div>
@@ -104,7 +116,7 @@
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/clipboard.min.js"></script>
 	
-	<script src="js/transform.js"></script>
+	<script src="js/index.js"></script>
   </body>
 </html>
 	

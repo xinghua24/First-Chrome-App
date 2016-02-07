@@ -1,6 +1,6 @@
 {
-  "name": "regex replace",
-  "description": "String manipulation using JavascriptRegex",
+  "name": "String Replacer",
+  "description": "String manipulation using replace() function in javascript",
   "version": "0.1",
   "manifest_version": 2,
   "app": {
@@ -8,7 +8,7 @@
       "scripts": ["background.js"]
     }
   },
-  "icons": { "16": "transform-16.png", "128": "transform-128.png" },
+  "icons": { "16": "icon-16.png", "128": "icon-128.png" },
           
 		  
 	"permissions": [
